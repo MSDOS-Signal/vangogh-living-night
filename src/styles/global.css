@@ -1,0 +1,189 @@
+/* ============================================================
+   VAN GOGH — THE LIVING NIGHT
+   Global styles: luxury glassmorphism HUD, Apple Vision Pro feel
+   ============================================================ */
+
+:root {
+  --font-display:
+    'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono:
+    'SF Mono', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+
+  --ink: rgba(235, 240, 255, 0.92);
+  --ink-dim: rgba(200, 210, 235, 0.55);
+  --ink-faint: rgba(180, 195, 225, 0.32);
+  --accent: rgba(140, 175, 255, 0.85);
+  --gold: rgba(255, 214, 140, 0.9);
+
+  --glass-bg: rgba(14, 18, 34, 0.38);
+  --glass-border: rgba(160, 185, 255, 0.14);
+  --glass-blur: blur(18px) saturate(1.2);
+
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  font-family: var(--font-display);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+  cursor: default;
+}
+
+/* ---------- glass primitives ---------- */
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.hud-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.hud-value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-value--accent {
+  color: var(--accent);
+}
+
+.hud-value--gold {
+  color: var(--gold);
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(160, 185, 255, 0.25),
+    transparent
+  );
+}
+
+/* ---------- fade transition (UI auto-hide) ---------- */
+
+.fade-slow-enter-active,
+.fade-slow-leave-active {
+  transition: opacity 0.9s var(--ease-lux), transform 0.9s var(--ease-lux);
+}
+
+.fade-slow-enter-from,
+.fade-slow-leave-to {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* ---------- range input (control panel) ---------- */
+
+input[type='range'].lux {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: rgba(160, 185, 255, 0.22);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='range'].lux::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(220, 232, 255, 0.95);
+  border: none;
+  box-shadow: 0 0 10px rgba(140, 175, 255, 0.7);
+  transition: transform 0.2s var(--ease-lux);
+}
+
+input[type='range'].lux::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+input[type='range'].lux::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(220, 232, 255, 0.95);
+  border: none;
+  box-shadow: 0 0 10px rgba(140, 175, 255, 0.7);
+}
+
+/* ---------- buttons ---------- */
+
+.btn-lux {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 9px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-lux);
+  backdrop-filter: blur(8px);
+}
+
+.btn-lux:hover {
+  color: var(--ink);
+  border-color: rgba(160, 185, 255, 0.4);
+  box-shadow: 0 0 18px rgba(120, 160, 255, 0.15);
+}
+
+.btn-lux.active {
+  color: var(--accent);
+  border-color: rgba(140, 175, 255, 0.5);
+  box-shadow:
+    0 0 18px rgba(120, 160, 255, 0.2),
+    inset 0 0 12px rgba(120, 160, 255, 0.08);
+}
+
+/* ---------- scrollbar ---------- */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 185, 255, 0.2);
+  border-radius: 4px;
+}

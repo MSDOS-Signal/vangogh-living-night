@@ -1,0 +1,26 @@
+{
+  "name": "vangogh-living-night",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Van Gogh Starry Night - Gesture-controlled immersive WebGL art experience",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.14",
+    "gsap": "^3.12.5",
+    "three": "^0.169.0",
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.10",
+    "vue-tsc": "^2.1.10"
+  }
+}
